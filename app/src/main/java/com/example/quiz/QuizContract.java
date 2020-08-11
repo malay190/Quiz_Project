@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
 //This class is used as a container for different constant and later used for sqlite operation
 public final class QuizContract {
 
-    //used because we won't create the object of the class
+    //private constructor used because we won't create the object of the class
     private QuizContract(){
 
     }
