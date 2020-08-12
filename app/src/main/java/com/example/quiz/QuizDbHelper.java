@@ -6,15 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.quiz.QuizContract.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
-    public static final String TAG = "QuizDbHelper";
+    private static final String TAG = "QuizDbHelper";
     private static final String DATABASE_NAME = "Quiz.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -78,8 +76,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
-    public List<Questions> getAllQuestion() {
-        List<Questions> questionsList = new ArrayList<>();
+    public ArrayList<Questions> getAllQuestion() {
+        ArrayList<Questions> questionsList = new ArrayList<>();
         db = getReadableDatabase();
         Log.d(TAG, "getAllQuestion: db created ");
         Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
