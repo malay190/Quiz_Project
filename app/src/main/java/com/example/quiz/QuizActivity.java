@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
+import static com.example.quiz.MainActivity.DIFFICULTY_LEVEL;
+
 public class QuizActivity extends AppCompatActivity {
     public static final String EXTRA_HIGH_SCORE = "com.example.quiz_HIGH_SCORE";
     private static final long COUNTDOWN_IN_MILLIS = 30000;
@@ -34,6 +36,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewScore;
     private TextView textViewQuestionCount;
     private TextView textViewCountDown;
+    private TextView textViewDifficulty;
     private RadioGroup rbGroup;
     private RadioButton rb1;
     private RadioButton rb2;
@@ -65,6 +68,7 @@ public class QuizActivity extends AppCompatActivity {
         textViewScore = findViewById(R.id.text_view_score);
         textViewQuestionCount = findViewById(R.id.text_view_question_count);
         textViewCountDown = findViewById(R.id.text_view_countdown);
+        textViewDifficulty = findViewById(R.id.text_view_difficulty_level);
         rbGroup = findViewById(R.id.radio_group);
         rb1 = findViewById(R.id.radio_button1);
         rb2 = findViewById(R.id.radio_button2);
@@ -74,9 +78,15 @@ public class QuizActivity extends AppCompatActivity {
         textColorDefaultRb = rb1.getTextColors();
         textColorDefaultCd = textViewCountDown.getTextColors();
 
+        Intent intent = getIntent();
+        String difficulty = intent.getStringExtra(DIFFICULTY_LEVEL);
+
+        textViewDifficulty.setText("Difficulty: " + difficulty);
+
+
         if(savedInstanceState==null) {
             QuizDbHelper dbHelper = new QuizDbHelper(this);
-            questionList = dbHelper.getAllQuestion();
+            questionList = dbHelper.getQuestions(difficulty);
             questionCountTotal = questionList.size();
             Collections.shuffle(questionList);
 
