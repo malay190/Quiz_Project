@@ -13,17 +13,22 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.List;
+
 import static com.example.quiz.QuizActivity.EXTRA_HIGH_SCORE;
 
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_QUIZ = 1;
-    public static final String DIFFICULTY_LEVEL = "difficultyLevel";
+    public static final String EXTRA_CATEGORY_ID = "extraCategoryID";
+    public static final String EXTRA_CATEGORY_NAME = "extraCategoryName";
+    public static final String EXTRA_DIFFICULTY = "extraDifficulty";
 
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String KEY_HIGH_SCORE = "keyHighScore";
 
     TextView textViewShowHighScore;
-    Spinner spinner;
+    private Spinner spinner;
+    private Spinner spinnerCategory;
 
     private int highScore;
     Button buttonStartQuiz;
@@ -35,24 +40,31 @@ public class MainActivity extends AppCompatActivity {
 
         textViewShowHighScore = findViewById(R.id.text_view_highscore);
         spinner = findViewById(R.id.spinner_difficulty_level);
+        spinnerCategory = findViewById(R.id.spinner_category);
 
-        final String[] difficulty = Questions.getAllDifficultyLevels();
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, difficulty);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(arrayAdapter);
+        loadCategories();
+        loadDifficultyLevels();
         loadHighScore();
 
         buttonStartQuiz = findViewById(R.id.button_start_quiz);
         buttonStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String difficultyLevel = spinner.getSelectedItem().toString();
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                intent.putExtra(DIFFICULTY_LEVEL,difficultyLevel);
-                startActivityForResult(intent, REQUEST_CODE_QUIZ);
+                startQuiz();
             }
         });
+    }
+
+    private void startQuiz() {
+        Categories selectedCategory = (Categories) spinnerCategory.getSelectedItem();
+        int categoryID = selectedCategory.getId();
+        String categoryName = selectedCategory.getName();
+        String difficulty = spinner.getSelectedItem().toString();
+        Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+        intent.putExtra(EXTRA_CATEGORY_ID, categoryID);
+        intent.putExtra(EXTRA_CATEGORY_NAME, categoryName);
+        intent.putExtra(EXTRA_DIFFICULTY, difficulty);
+        startActivityForResult(intent, REQUEST_CODE_QUIZ);
     }
 
     @Override
@@ -69,6 +81,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+
+
+    private void loadCategories() {
+        QuizDbHelper dbHelper = QuizDbHelper.getInstance(this);
+        List<Categories> categories = dbHelper.getAllCategories();
+        ArrayAdapter<Categories> adapterCategories = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, categories);
+        adapterCategories.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(adapterCategories);
+    }
+
+    private void loadDifficultyLevels() {
+        String[] difficultyLevels = Questions.getAllDifficultyLevels();
+        ArrayAdapter<String> adapterDifficulty = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, difficultyLevels);
+        adapterDifficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapterDifficulty);
     }
 
     private void loadHighScore() {

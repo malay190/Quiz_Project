@@ -36,13 +36,20 @@
         android:text="Start Quiz" />
 
     <Spinner
+        android:id="@+id/spinner_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button_start_quiz"
+        android:layout_below="@+id/button_start_quiz"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
         android:id="@+id/spinner_difficulty_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_start_quiz"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="196dp" />
+        android:layout_alignStart="@+id/spinner_category"
+        android:layout_below="@+id/spinner_category"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="190dp" />
 
 </RelativeLayout>

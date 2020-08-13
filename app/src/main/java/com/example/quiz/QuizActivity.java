@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
-import static com.example.quiz.MainActivity.DIFFICULTY_LEVEL;
 
 public class QuizActivity extends AppCompatActivity {
     public static final String EXTRA_HIGH_SCORE = "com.example.quiz_HIGH_SCORE";
@@ -36,6 +35,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewScore;
     private TextView textViewQuestionCount;
     private TextView textViewCountDown;
+    private TextView textViewCategory;
     private RadioGroup rbGroup;
     private RadioButton rb1;
     private RadioButton rb2;
@@ -69,6 +69,7 @@ public class QuizActivity extends AppCompatActivity {
         textViewQuestionCount = findViewById(R.id.text_view_question_count);
         textViewCountDown = findViewById(R.id.text_view_countdown);
         TextView textViewDifficulty = findViewById(R.id.text_view_difficulty_level);
+        textViewCategory = findViewById(R.id.text_view_category);
         rbGroup = findViewById(R.id.radio_group);
         rb1 = findViewById(R.id.radio_button1);
         rb2 = findViewById(R.id.radio_button2);
@@ -79,14 +80,17 @@ public class QuizActivity extends AppCompatActivity {
         textColorDefaultCd = textViewCountDown.getTextColors();
 
         Intent intent = getIntent();
-        String difficulty = intent.getStringExtra(DIFFICULTY_LEVEL);
+        int categoryID = intent.getIntExtra(MainActivity.EXTRA_CATEGORY_ID, 0);
+        String categoryName = intent.getStringExtra(MainActivity.EXTRA_CATEGORY_NAME);
+        String difficulty = intent.getStringExtra(MainActivity.EXTRA_DIFFICULTY);
 
         textViewDifficulty.setText("Difficulty: " + difficulty);
+        textViewCategory.setText("Category: " + categoryName);
 
 
         if(savedInstanceState==null) {
-            QuizDbHelper dbHelper = new QuizDbHelper(this);
-            questionList = dbHelper.getQuestions(difficulty);
+            QuizDbHelper dbHelper = QuizDbHelper.getInstance(this);
+            questionList = dbHelper.getQuestions(categoryID, difficulty);
             questionCountTotal = questionList.size();
             Collections.shuffle(questionList);
 
