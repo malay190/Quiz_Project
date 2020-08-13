@@ -36,7 +36,6 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewScore;
     private TextView textViewQuestionCount;
     private TextView textViewCountDown;
-    private TextView textViewDifficulty;
     private RadioGroup rbGroup;
     private RadioButton rb1;
     private RadioButton rb2;
@@ -59,6 +58,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private long backPressedTime;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +68,7 @@ public class QuizActivity extends AppCompatActivity {
         textViewScore = findViewById(R.id.text_view_score);
         textViewQuestionCount = findViewById(R.id.text_view_question_count);
         textViewCountDown = findViewById(R.id.text_view_countdown);
-        textViewDifficulty = findViewById(R.id.text_view_difficulty_level);
+        TextView textViewDifficulty = findViewById(R.id.text_view_difficulty_level);
         rbGroup = findViewById(R.id.radio_group);
         rb1 = findViewById(R.id.radio_button1);
         rb2 = findViewById(R.id.radio_button2);
