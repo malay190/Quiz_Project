@@ -96,30 +96,104 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Questions q1 = new Questions("Programming, Easy: A is correct",
-                "A", "B", "C", 1,
+        Questions q1 = new Questions("Which of the following sorting algorithms can be used to sort a random linked list with minimum time complexity?",
+                "Insertion sort", "Quick sort", "Merge sort", 3,
                 Questions.DIFFICULTY_EASY, Categories.PROGRAMMING);
         addQuestion(q1);
-        Questions q2 = new Questions("Geography, Medium: B is correct",
-                "A", "B", "C", 2,
-                Questions.DIFFICULTY_MEDIUM, Categories.GEOGRAPHY);
+
+        Questions q2 = new Questions("How many stacks are needed to implement a queue. Consider the situation where no other data structure like arrays, linked list is available to you.",
+                "1", "2", "3", 2,
+                Questions.DIFFICULTY_EASY, Categories.PROGRAMMING);
         addQuestion(q2);
-        Questions q3 = new Questions("Math, Hard: C is correct",
-                "A", "B", "C", 3,
-                Questions.DIFFICULTY_HARD, Categories.MATH);
+
+        Questions q3 = new Questions("How many stacks are needed to implement a queue. Consider the situation where no other data structure like arrays, linked list is available to you.",
+                "1", "2", "3", 2,
+                Questions.DIFFICULTY_MEDIUM, Categories.PROGRAMMING);
         addQuestion(q3);
-        Questions q4 = new Questions("Math, Easy: A is correct",
-                "A", "B", "C", 1,
-                Questions.DIFFICULTY_EASY, Categories.MATH);
+
+        Questions q4 = new Questions("Which of the following sorting algorithms can be used to sort a random linked list with minimum time complexity?",
+                "Insertion sort", "Quick sort", "Merge sort", 3,
+                Questions.DIFFICULTY_MEDIUM, Categories.PROGRAMMING);
         addQuestion(q4);
-        Questions q5 = new Questions("Non existing, Easy: A is correct",
+
+        Questions q5 = new Questions("How many stacks are needed to implement a queue. Consider the situation where no other data structure like arrays, linked list is available to you.",
+                "1", "2", "3", 2,
+                Questions.DIFFICULTY_HARD, Categories.PROGRAMMING);
+        addQuestion(q5);
+
+        Questions q6 = new Questions("Which of the following sorting algorithms can be used to sort a random linked list with minimum time complexity?",
+                "Insertion sort", "Quick sort", "Merge sort", 3,
+                Questions.DIFFICULTY_HARD, Categories.PROGRAMMING);
+        addQuestion(q6);
+
+        Questions q7 = new Questions("Capital of india",
+                "Patna", "New Delhi", "chattisgarh", 2,
+                Questions.DIFFICULTY_EASY, Categories.GEOGRAPHY);
+        addQuestion(q7);
+
+        Questions q8 = new Questions("Capital of Bihar",
+                "Patna", "Muzaffarpur", "Darbhanga", 2,
+                Questions.DIFFICULTY_EASY, Categories.GEOGRAPHY);
+        addQuestion(q8);
+
+        Questions q9 = new Questions("Which passes make way to the land route between Kailash and the Manasarovar?",
+                "Mana Pass", "Rohtas pass", "Nathula Pass", 1,
+                Questions.DIFFICULTY_MEDIUM, Categories.GEOGRAPHY);
+        addQuestion(q9);
+
+        Questions q10 = new Questions("Which of the following is the world’s largest peninsula?",
+                "India", "South Africa", "Arbia", 3,
+                Questions.DIFFICULTY_MEDIUM, Categories.GEOGRAPHY);
+        addQuestion(q10);
+
+        Questions q11 = new Questions(" Which of the following is the largest Archipelago in the world?",
+                "Andaman & Nicobar Island", "Malaysia", "Maldvis", 3,
+                Questions.DIFFICULTY_HARD, Categories.GEOGRAPHY);
+        addQuestion(q11);
+
+        Questions q12 = new Questions("Which of the following geographical term related with the piece of sub-continental land that is surrounded by water?",
+                "Peninsula", "Gulf", "Island", 3,
+                Questions.DIFFICULTY_HARD, Categories.GEOGRAPHY);
+        addQuestion(q12);
+
+        Questions q13 = new Questions("SquareRoot 0f 49",
+                "7", "6", "5", 3,
+                Questions.DIFFICULTY_EASY, Categories.MATH);
+        addQuestion(q13);
+
+        Questions q14 = new Questions(" 4+5",
+                "9", "8", "7", 9,
+                Questions.DIFFICULTY_EASY, Categories.MATH);
+        addQuestion(q14);
+
+        Questions q15 = new Questions("Which of the following is odd?",
+                "6", "5", "4", 2,
+                Questions.DIFFICULTY_MEDIUM, Categories.MATH);
+        addQuestion(q15);
+
+        Questions q16 = new Questions("Which of the following is even?",
+                "7", "9", "6", 3,
+                Questions.DIFFICULTY_MEDIUM, Categories.MATH);
+        addQuestion(q16);
+
+        Questions q17 = new Questions("Which of the following is odd?",
+                "7", "4", "0", 1,
+                Questions.DIFFICULTY_HARD, Categories.MATH);
+        addQuestion(q17);
+
+        Questions q18 = new Questions("Which of the following is even?",
+                "7", "2", "11", 3,
+                Questions.DIFFICULTY_HARD, Categories.MATH);
+        addQuestion(q18);
+
+        Questions q19 = new Questions("Non existing, Easy: A is correct",
                 "A", "B", "C", 1,
                 Questions.DIFFICULTY_EASY, 4);
-        addQuestion(q5);
-        Questions q6 = new Questions("Non existing, Medium: B is correct",
+        addQuestion(q19);
+        Questions q20 = new Questions("Non existing, Medium: B is correct",
                 "A", "B", "C", 2,
                 Questions.DIFFICULTY_MEDIUM, 5);
-        addQuestion(q6);
+        addQuestion(q20);
 
     }
 
