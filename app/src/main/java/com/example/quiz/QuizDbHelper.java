@@ -15,7 +15,7 @@ import java.util.List;
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String TAG = "QuizDbHelper";
     private static final String DATABASE_NAME = "Quiz.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
 
     private SQLiteDatabase db;
     private static QuizDbHelper instance;
@@ -51,6 +51,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
                 QuestionsTable.COLUMN_ANSWER_NR + " INTEGER, " +
                 QuestionsTable.COLUMN_DIFFICULTY + " TEXT, " +
+                QuestionsTable.COLUMN_CATEGORY_ID + " INTEGER, " +
                 "FOREIGN KEY(" + QuestionsTable.COLUMN_CATEGORY_ID + ") REFERENCES " +
                 CategoriesTable.TABLE_NAME + "(" + CategoriesTable._ID + ")" + "ON DELETE CASCADE" +
                 ")";
@@ -68,6 +69,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + CategoriesTable.TABLE_NAME);
         onCreate(db);
         Log.d(TAG, "onUpgrade ");
 
