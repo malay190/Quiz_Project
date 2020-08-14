@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.quiz.QuizActivity.EXTRA_HIGH_SCORE;
@@ -87,16 +86,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void loadCategories() {
-        List<String> differentCategories = new ArrayList<>();
         QuizDbHelper dbHelper = QuizDbHelper.getInstance(this);
         List<Categories> categories = dbHelper.getAllCategories();
-
-
-        for(Categories s: categories){
-           differentCategories.add(s.getName().toString());
-        }
-        ArrayAdapter<String> adapterCategories = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,differentCategories);
+        ArrayAdapter<Categories> adapterCategories = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, categories);
         adapterCategories.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapterCategories);
     }
